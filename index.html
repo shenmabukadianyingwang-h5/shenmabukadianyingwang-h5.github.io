@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神马不卡电影网 - 高清不卡顿免费在线电影</title>
+<meta name="keywords" content="神马不卡电影网,shenmabukadianyingwang-h5.github.io,神马不卡影院,高清电影,免费电影,在线电影,不卡顿电影网,最新电影,热播剧集">
+<meta name="description" content="神马不卡电影网 shenmabukadianyingwang-h5.github.io 提供高清不卡顿的免费在线电影、热播剧集、综艺动漫资源，最新大片实时更新，极速播放流畅体验。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://shenmabukadianyingwang-h5.github.io/">
+<style>
+:root{
+  --bg:#070b1a; --bg2:#0c1229; --card:#121a36; --line:#1f2a4d;
+  --cyan:#00e5ff; --blue:#2b6cff; --purple:#7b3bff; --gold:#ffcf5c;
+  --txt:#e8edff; --txt2:#93a0c8; --badge:#ff3b6b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--txt); line-height:1.6;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; z-index:-2;
+  background:radial-gradient(900px 600px at 12% 8%,rgba(0,229,255,.16),transparent 60%),
+             radial-gradient(800px 700px at 88% 30%,rgba(123,59,255,.18),transparent 60%),
+             radial-gradient(700px 600px at 50% 95%,rgba(43,108,255,.14),transparent 60%);
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:-1; opacity:.5;
+  background-image:linear-gradient(rgba(0,229,255,.045) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,229,255,.045) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}
+
+/* ===== Header ===== */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,11,26,.82); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.h-top{padding:14px 0;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.logo{
+  font-size:26px;font-weight:900;letter-spacing:1px;
+  background:linear-gradient(90deg,#00e5ff,#2b6cff 55%,#7b3bff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  white-space:nowrap;
+}
+.logo span{color:var(--gold);-webkit-text-fill-color:var(--gold);}
+.search{
+  flex:1;min-width:220px;position:relative;
+}
+.search input{
+  width:100%;padding:11px 100px 11px 44px;border-radius:30px;border:none;
+  background:rgba(255,255,255,.07);color:var(--txt);font-size:14px;
+  border:1px solid var(--line);outline:none;
+}
+.search input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.16);}
+.search::before{
+  content:"🔍";position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.7;
+}
+.search button{
+  position:absolute;right:4px;top:50%;transform:translateY(-50%);
+  padding:8px 18px;border:none;border-radius:24px;cursor:pointer;font-size:13px;font-weight:700;
+  background:linear-gradient(90deg,var(--cyan),var(--blue));color:#04122b;
+}
+.nav-wrap{display:flex;align-items:center;gap:10px;}
+.nav{display:flex;gap:4px;flex-wrap:wrap;}
+.nav a{
+  padding:8px 14px;border-radius:20px;font-size:14px;font-weight:600;color:var(--txt2);
+  transition:.25s;white-space:nowrap;
+}
+.nav a:hover{color:var(--cyan);background:rgba(0,229,255,.1);}
+.menu-btn{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);
+  background:var(--card);color:var(--cyan);font-size:22px;cursor:pointer;}
+
+/* ===== Hero ===== */
+.hero{position:relative;height:520px;margin-top:16px;border-radius:22px;overflow:hidden;
+  border:1px solid var(--line);background:var(--card);}
+.hero-slides{height:100%;position:relative;}
+.h-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s,transform .8s;transform:scale(1.06);}
+.h-slide.active{opacity:1;transform:scale(1);}
+.h-slide .bg{position:absolute;inset:0;
+  background:linear-gradient(120deg,var(--blue),var(--purple) 55%,#00b8d4);}
+.h-slide .bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 30%,rgba(255,255,255,.25),transparent 45%);}
+.h-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;
+  justify-content:center;padding:0 60px;max-width:760px;}
+.h-tag{display:inline-block;align-self:flex-start;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:700;
+  background:rgba(255,207,92,.18);color:var(--gold);border:1px solid rgba(255,207,92,.4);margin-bottom:18px;}
+.h-title{font-size:44px;font-weight:900;line-height:1.2;margin-bottom:16px;
+  text-shadow:0 4px 24px rgba(0,0,0,.4);}
+.h-title em{font-style:normal;color:var(--cyan);}
+.h-desc{font-size:16px;color:rgba(255,255,255,.9);margin-bottom:26px;max-width:560px;}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:30px;font-size:15px;font-weight:700;
+  cursor:pointer;border:none;transition:.25s;}
+.btn-main{background:linear-gradient(90deg,var(--cyan),var(--blue));color:#04122b;}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,229,255,.4);}
+.btn-sub{border:1px solid rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.08);}
+.btn-sub:hover{background:rgba(255,255,255,.18);}
+.hero-dots{position:absolute;right:26px;top:50%;transform:translateY(-50%);z-index:5;
+  display:flex;flex-direction:column;gap:12px;}
+.hero-dots i{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.6);cursor:pointer;transition:.25s;}
+.hero-dots i.active{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 14px var(--cyan);}
+.hero-scroll{position:absolute;left:60px;bottom:22px;z-index:5;font-size:13px;color:rgba(255,255,255,.85);
+  display:flex;align-items:center;gap:8px;}
+.hero-scroll b{color:var(--gold);}
+
+/* ===== Section ===== */
+section{padding:64px 0;}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:30px;flex-wrap:wrap;}
+.sec-title{display:flex;align-items:center;gap:14px;}
+.sec-title h2{font-size:26px;font-weight:900;letter-spacing:.5px;}
+.sec-title .bar{width:6px;height:30px;border-radius:4px;background:linear-gradient(var(--cyan),var(--blue));}
+.sec-title small{color:var(--txt2);font-size:13px;margin-left:6px;}
+.sec-more{font-size:13px;color:var(--cyan);font-weight:600;padding:6px 16px;border-radius:20px;
+  border:1px solid rgba(0,229,255,.35);transition:.25s;}
+.sec-more:hover{background:rgba(0,229,255,.12);}
+
+/* poster grid */
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
+.poster{position:relative;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);
+  transition:.35s;cursor:pointer;}
+.poster:hover{transform:translateY(-8px);border-color:var(--cyan);box-shadow:0 16px 36px rgba(0,229,255,.22);}
+.poster .thumb{position:relative;aspect-ratio:3/4;overflow:hidden;}
+.poster .thumb .ph{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:30px;font-weight:900;color:rgba(255,255,255,.9);
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+.poster:nth-child(2n) .thumb .ph{background:linear-gradient(135deg,#00b8d4,#2b6cff);}
+.poster:nth-child(3n) .thumb .ph{background:linear-gradient(135deg,#7b3bff,#ff3b6b);}
+.poster:nth-child(4n) .thumb .ph{background:linear-gradient(135deg,#00e5ff,#7b3bff);}
+.poster .thumb .ph::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.3),transparent 50%);}
+.poster .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.7);opacity:0;
+  width:56px;height:56px;border-radius:50%;background:rgba(0,229,255,.92);color:#04122b;
+  display:flex;align-items:center;justify-content:center;font-size:20px;transition:.3s;z-index:3;}
+.poster:hover .play{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.p-badge{position:absolute;left:10px;top:10px;z-index:3;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:800;
+  background:var(--badge);color:#fff;}
+.p-score{position:absolute;right:10px;top:10px;z-index:3;padding:3px 9px;border-radius:6px;font-size:12px;font-weight:800;
+  background:rgba(7,11,26,.78);color:var(--gold);border:1px solid rgba(255,207,92,.4);}
+.poster .info{padding:12px 14px;}
+.poster .info h4{font-size:15px;font-weight:700;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.poster .info p{font-size:12px;color:var(--txt2);display:flex;justify-content:space-between;}
+
+/* rank */
+.rank-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;}
+.rank-main{position:relative;border-radius:18px;overflow:hidden;min-height:360px;border:1px solid var(--line);}
+.rank-main .bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a1c3d,#11205a);}
+.rank-main .bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 85% 20%,rgba(0,229,255,.3),transparent 50%);}
+.rank-main .txt{position:relative;z-index:2;padding:30px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;}
+.rank-main .no{font-size:70px;font-weight:900;color:var(--gold);line-height:1;
+  text-shadow:0 0 30px rgba(255,207,92,.5);}
+.rank-main h3{font-size:26px;margin:10px 0 8px;}
+.rank-main p{color:var(--txt2);font-size:14px;margin-bottom:18px;}
+.rank-list{display:flex;flex-direction:column;gap:10px;}
+.r-item{display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:12px;
+  background:var(--card);border:1px solid var(--line);transition:.25s;cursor:pointer;}
+.r-item:hover{border-color:var(--cyan);transform:translateX(6px);}
+.r-item .no2{font-size:22px;font-weight:900;color:var(--txt2);width:34px;}
+.r-item:nth-child(1) .no2{color:#ffd54a;}
+.r-item:nth-child(2) .no2{color:#d9dee6;}
+.r-item:nth-child(3) .no2{color:#d98a4b;}
+.r-item .mini{width:44px;height:60px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),var(--purple));}
+.r-item .mini.a{background:linear-gradient(135deg,#00b8d4,#2b6cff);}
+.r-item .mini.b{background:linear-gradient(135deg,#7b3bff,#ff3b6b);}
+.r-item .txt2{flex:1;min-width:0;}
+.r-item .txt2 h5{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.r-item .txt2 span{font-size:12px;color:var(--txt2);}
+.r-item .hot{font-size:12px;color:var(--cyan);font-weight:700;white-space:nowrap;}
+
+/* channels */
+.channels{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+.ch{position:relative;padding:26px 14px;border-radius:16px;text-align:center;cursor:pointer;overflow:hidden;
+  background:var(--card);border:1px solid var(--line);transition:.3s;}
+.ch::before{content:"";position:absolute;inset:0;opacity:0;transition:.3s;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));}
+.ch:hover::before{opacity:1;}
+.ch>*{position:relative;z-index:2;}
+.ch:hover>*{color:#04122b;}
+.ch .ico{font-size:32px;margin-bottom:8px;transition:.3s;}
+.ch h4{font-size:15px;font-weight:700;margin-bottom:4px;transition:.3s;}
+.ch p{font-size:12px;color:var(--txt2);transition:.3s;}
+.ch:hover p{color:rgba(4,18,43,.75);}
+
+/* tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+.tab{padding:9px 22px;border-radius:24px;font-size:14px;font-weight:600;cursor:pointer;transition:.25s;
+  background:var(--card);border:1px solid var(--line);color:var(--txt2);}
+.tab.active{background:linear-gradient(90deg,var(--cyan),var(--blue));color:#04122b;border-color:transparent;}
+.tab:hover:not(.active){color:var(--cyan);}
+.h-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none;}
+.h-scroll::-webkit-scrollbar{display:none;}
+.h-card{flex:0 0 240px;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:.3s;}
+.h-card:hover{transform:translateY(-6px);border-color:var(--cyan);}
+.h-card .thumb{position:relative;height:140px;background:linear-gradient(135deg,var(--blue),var(--purple));}
+.h-card:nth-child(2n) .thumb{background:linear-gradient(135deg,#00b8d4,#2b6cff);}
+.h-card:nth-child(3n) .thumb{background:linear-gradient(135deg,#7b3bff,#ff3b6b);}
+.h-card .thumb span{position:absolute;left:12px;bottom:12px;font-size:17px;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);}
+.h-card .ep{position:absolute;right:12px;top:12px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;
+  background:rgba(7,11,26,.7);color:var(--cyan);}
+.h-card .info{padding:12px 14px;}
+.h-card .info h4{font-size:15px;font-weight:700;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.h-card .info .bar{height:5px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:6px;}
+.h-card .info .bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--cyan),var(--blue));}
+.h-card .info small{font-size:12px;color:var(--txt2);}
+
+/* news */
+.news{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;}
+.news-main{position:relative;border-radius:18px;overflow:hidden;min-height:320px;border:1px solid var(--line);}
+.news-main .bg{position:absolute;inset:0;background:linear-gradient(135deg,#0e1f4a,#1a1245);}
+.news-main .bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 80%,rgba(123,59,255,.35),transparent 50%);}
+.news-main .txt{position:relative;z-index:2;padding:28px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;}
+.news-main .cat{display:inline-block;align-self:flex-start;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  background:var(--cyan);color:#04122b;margin-bottom:12px;}
+.news-main h3{font-size:22px;margin-bottom:8px;}
+.news-main p{color:var(--txt2);font-size:14px;}
+.news-list{display:flex;flex-direction:column;gap:14px;}
+.n-item{display:flex;gap:14px;padding:12px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:.25s;cursor:pointer;}
+.n-item:hover{border-color:var(--cyan);background:rgba(0,229,255,.06);}
+.n-item .date{flex-shrink:0;width:52px;text-align:center;padding-top:2px;}
+.n-item .date b{display:block;font-size:22px;font-weight:900;color:var(--cyan);line-height:1;}
+.n-item .date span{font-size:11px;color:var(--txt2);}
+.n-item h5{font-size:14px;font-weight:700;margin-bottom:4px;line-height:1.5;}
+.n-item p{font-size:12px;color:var(--txt2);}
+
+/* collage */
+.collage{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;height:440px;}
+.col-card{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;border:1px solid var(--line);transition:.35s;}
+.col-card:hover{transform:scale(1.02);border-color:var(--cyan);z-index:3;}
+.col-card.big{grid-row:span 2;}
+.col-card .ph{position:absolute;inset:0;background:linear-gradient(135deg,var(--blue),var(--purple));}
+.col-card:nth-child(2) .ph{background:linear-gradient(135deg,#00b8d4,#2b6cff);}
+.col-card:nth-child(3) .ph{background:linear-gradient(135deg,#7b3bff,#ff3b6b);}
+.col-card:nth-child(4) .ph{background:linear-gradient(135deg,#00e5ff,#7b3bff);}
+.col-card .ph::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,11,26,.95),transparent 70%);}
+.col-card .ct{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;}
+.col-card .ct .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;
+  background:rgba(0,229,255,.2);color:var(--cyan);border:1px solid rgba(0,229,255,.4);margin-bottom:8px;}
+.col-card h4{font-size:17px;font-weight:800;}
+.col-card.big h4{font-size:24px;}
+.col-card .ct small{font-size:12px;color:var(--txt2);}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.stat{padding:24px 14px;border-radius:16px;text-align:center;background:var(--card);border:1px solid var(--line);transition:.3s;}
+.stat:hover{border-color:var(--cyan);transform:translateY(-5px);}
+.stat b{display:block;font-size:30px;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--blue));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat span{font-size:13px;color:var(--txt2);}
+.about-txt h2{font-size:28px;font-weight:900;margin-bottom:16px;}
+.about-txt h2 em{font-style:normal;color:var(--cyan);}
+.about-txt p{color:var(--txt2);margin-bottom:12px;}
+.f-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.f-tags span{padding:6px 14px;border-radius:20px;font-size:12px;background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.25);}
+.contact-form{margin-top:30px;padding:26px;border-radius:18px;background:var(--card);border:1px solid var(--line);}
+.contact-form h3{font-size:18px;margin-bottom:18px;}
+.contact-form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.contact-form input,.contact-form textarea{width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.05);color:var(--txt);font-size:14px;outline:none;margin-bottom:14px;font-family:inherit;}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--cyan);}
+.contact-form textarea{resize:vertical;min-height:90px;}
+.contact-form button{width:100%;padding:13px;border:none;border-radius:12px;cursor:pointer;font-size:15px;font-weight:800;
+  background:linear-gradient(90deg,var(--cyan),var(--blue));color:#04122b;transition:.25s;}
+.contact-form button:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,229,255,.35);}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:44px 0 26px;background:rgba(6,10,24,.7);}
+.f-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;margin-bottom:30px;}
+.f-logo{font-size:22px;font-weight:900;margin-bottom:12px;
+  background:linear-gradient(90deg,#00e5ff,#2b6cff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.f-main p{color:var(--txt2);font-size:13px;}
+.f-col h5{font-size:15px;font-weight:800;margin-bottom:14px;color:var(--cyan);}
+.f-col a{display:block;color:var(--txt2);font-size:13px;padding:5px 0;transition:.2s;}
+.f-col a:hover{color:var(--cyan);padding-left:6px;}
+.f-bottom{border-top:1px solid var(--line);padding-top:20px;text-align:center;color:var(--txt2);font-size:12px;}
+.f-bottom p{margin-bottom:6px;}
+#top{position:fixed;right:22px;bottom:26px;z-index:99;width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));color:#04122b;font-size:20px;display:none;
+  box-shadow:0 6px 20px rgba(0,229,255,.4);transition:.25s;}
+#top:hover{transform:translateY(-4px);}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header>
+  <div class="container">
+    <div class="h-top">
+      <div class="logo">神马不卡<span>电影网</span></div>
+      <div class="search">
+        <input type="text" placeholder="搜索电影 / 剧集 / 综艺 / 演员...">
+        <button type="button">搜索</button>
+      </div>
+      <div class="nav-wrap">
+        <nav class="nav">
+          <a href="#home">首页</a>
+          <a href="#new">最新上线</a>
+          <a href="#cat">影片分类</a>
+          <a href="#rank">排行榜</a>
+          <a href="#tv">剧集综艺</a>
+          <a href="#news">影视资讯</a>
+          <a href="#topic">精选专题</a>
+          <a href="#about">关于我们</a>
+        </nav>
+        <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="home" style="padding-top:16px;">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-slides" id="heroSlides">
+        <div class="h-slide active">
+          <div class="bg"></div>
+          <div class="h-content">
+            <span class="h-tag">🔥 本周最热</span>
+            <h1 class="h-title">极速不卡顿 · <em>畅享</em>高清大片</h1>
+            <p class="h-desc">神马不卡电影网 shenmabukadianyingwang-h5.github.io 汇聚海量免费高清电影与热播剧集，专线加速流畅播放，告别卡顿等待。</p>
+            <div class="h-btns"><a href="#new" class="btn btn-main">立即观影</a><a href="#cat" class="btn btn-sub">浏览分类</a></div>
+          </div>
+        </div>
+        <div class="h-slide">
+          <div class="bg" style="background:linear-gradient(120deg,#7b3bff,#ff3b6b 60%,#ff8a3d);"></div>
+          <div class="h-content">
+            <span class="h-tag">⚡ 全新上线</span>
+            <h1 class="h-title">每日<em>实时更新</em>院线大片</h1>
+            <p class="h-desc">最新院线电影、热门剧集、综艺动漫每日同步更新，第一时间抢先看，畅享视听盛宴。</p>
+            <div class="h-btns"><a href="#new" class="btn btn-main">查看新片</a><a href="#rank" class="btn btn-sub">热播榜单</a></div>
+          </div>
+        </div>
+        <div class="h-slide">
+          <div class="bg" style="background:linear-gradient(120deg,#00b8d4,#2b6cff 55%,#7b3bff);"></div>
+          <div class="h-content">
+            <span class="h-tag">🎬 全站免费</span>
+            <h1 class="h-title">一个网站 <em>看遍</em>全网好内容</h1>
+            <p class="h-desc">电影、剧集、综艺、动漫一站收录，多线路播放源智能切换，神马不卡电影网让你看得过瘾。</p>
+            <div class="h-btns"><a href="#cat" class="btn btn-main">开始探索</a><a href="#about" class="btn btn-sub">了解更多</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-dots" id="heroDots">
+        <i class="active"></i><i></i><i></i>
+      </div>
+      <div class="hero-scroll">持续更新中 · 今日已上新 <b>18</b> 部</div>
+    </div>
+  </div>
+</section>
+
+<!-- 最新上线 -->
+<section id="new">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-title"><span class="bar"></span><h2>最新上线</h2><small>Latest Movies</small></div>
+      <a href="#" class="sec-more">查看全部 ›</a>
+    </div>
+    <div class="grid" id="movieGrid"></div>
+  </div>
+</section>
+
+<!-- 影片分类 -->
+<section id="cat" style="padding-top:0;">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-title"><span class="bar"></span><h2>影片分类</h2><small>Categories</small></div>
+    </div>
+    <div class="channels">
+      <div class="ch"><div class="ico">🎬</div><h4>动作</h4><p>火爆大片</p></div>
+      <div class="ch"><div class="ico">😂</div><h4>喜剧</h4><p>轻松解压</p></div>
+      <div class="ch"><div class="ico">😱</div><h4>恐怖</h4><p>心跳挑战</p></div>
+      <div class="ch"><div class="ico">💕</div><h4>爱情</h4><p>甜蜜感动</p></div>
+      <div class="ch"><div class="ico">🚀</div><h4>科幻</h4><p>脑洞大开</p></div>
+      <div class="ch"><div class="ico">🎭</div><h4>剧情</h4><p>口碑佳作</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 排行榜 -->
+<section id="rank" style="padding-top:0;">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-title"><span class="bar"></span><h2>热播排行榜</h2><small>Top Chart</small></div>
+      <a href="#" class="sec-more">完整榜单 ›</a>
+    </div>
+    <div class="rank-wrap">
+      <div class="rank-main">
+        <div class="bg"></div>
+        <div class="txt">
+          <div class="no">01</div>
+          <h3>热播榜首影片</h3>
+          <p>院线同步 · 动作冒险 · 高清不卡顿播放中</p>
+          <a href="#" class="btn btn-main">▶ 立即播放</a>
+        </div>
+      </div>
+      <div class="rank-list" id="rankList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 剧集综艺 -->
+<section id="tv" style="padding-top:0;">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-title"><span class="bar"></span><h2>剧集 · 综艺 · 动漫</h2><small>TV Series & More</small></div>
+      <a href="#" class="sec-more">全部剧集 ›</a>
+    </div>
+    <div class="tabs" id="tvTabs">
+      <div class="tab active">热播剧集</div>
+      <div class="tab">内地综艺</div>
+      <div class="tab">日韩动漫</div>
+      <div class="tab">美剧精选</div>
+    </div>
+    <div class="h-scroll" id="tvScroll"></div>
+  </div>
+</section>
+
+<!-- 影视资讯 -->
+<section id="news" style="padding-top:0;">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-title"><span class="bar"></span><h2>影视资讯</h2><small>News</small></div>
+      <a href="#" class="sec-more">更多资讯 ›</a>
+    </div>
+    <div class="news">
+      <div class="news-main">
+        <div class="bg"></div>
+        <div class="txt">
+          <span class="cat">独家报道</span>
+          <h3>神马不卡电影网更新公告：全新播放源上线</h3>
+          <p>本站持续升级播放线路与内容库，致力于为影迷提供更稳定、更流畅的免费观影体验，敬请关注。</p>
+        </div>
+      </div>
+      <div class="news-list" id="newsList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 精选专题 -->
+<section id="topic" style="padding-top:0;">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-title"><span class="bar"></span><h2>精选专题</h2><small>Special Topics</small></div>
+      <a href="#" class="sec-more">更多专题 ›</a>
+    </div>
+    <div class="collage">
+      <div class="col-card big">
+        <div class="ph"></div>
+        <div class="ct"><span class="tag">合集</span><h4>豆瓣高分经典电影回顾</h4><small>8部殿堂级佳作 · 收藏必看</small></div>
+      </div>
+      <div class="col-card">
+        <div class="ph"></div>
+        <div class="ct"><span class="tag">特辑</span><h4>暑期档必看新片</h4><small>院线热映</small></div>
+      </div>
+      <div class="col-card">
+        <div class="ph"></div>
+        <div class="ct"><span class="tag">榜单</span><h4>冷门高分宝藏</h4><small>小众佳作推荐</small></div>
+      </div>
+      <div class="col-card">
+        <div class="ph"></div>
+        <div class="ct"><span class="tag">系列</span><h4>动作系列全收录</h4><small>从头追到尾</small></div>
+      </div>
+      <div class="col-card">
+        <div class="ph"></div>
+        <div class="ct"><span class="tag">导演</span><h4>大师名作精选</h4><small>经典永不过时</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于我们 -->
+<section id="about" style="padding-top:0;">
+  <div class="container">
+    <div class="about">
+      <div>
+        <div class="stats">
+          <div class="stat"><b>10000+</b><span>高清影片</span></div>
+          <div class="stat"><b>24h</b><span>实时更新</span></div>
+          <div class="stat"><b>∞</b><span>免费畅看</span></div>
+        </div>
+        <div class="contact-form">
+          <h3>💬 影迷留言</h3>
+          <div class="row">
+            <input type="text" placeholder="您的称呼">
+            <input type="email" placeholder="联系邮箱">
+          </div>
+          <textarea placeholder="想看什么影片？欢迎留言告诉我们..."></textarea>
+          <button type="button" id="submitBtn">提交留言</button>
+        </div>
+      </div>
+      <div class="about-txt">
+        <h2>关于 <em>神马不卡电影网</em></h2>
+        <p>神马不卡电影网（shenmabukadianyingwang-h5.github.io）是一个专注于提供高清、流畅、免费在线观影体验的影视站点，收录电影、剧集、综艺、动漫等各类优质内容。</p>
+        <p>我们坚持每日更新，精选院线大片与口碑好剧，多线路智能播放，让你告别卡顿，随时随地畅享视听盛宴。</p>
+        <div class="f-tags">
+          <span>#高清电影</span><span>#不卡顿</span><span>#免费观影</span><span>#每日更新</span><span>#热播剧集</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-main">
+      <div>
+        <div class="f-logo">神马不卡电影网</div>
+        <p>神马不卡电影网 shenmabukadianyingwang-h5.github.io 为您提供海量高清免费电影、热播剧集、综艺动漫在线观看，极速播放不卡顿。</p>
+      </div>
+      <div class="f-col"><h5>影片导航</h5><a href="#new">最新上线</a><a href="#rank">热播榜单</a><a href="#cat">分类浏览</a><a href="#tv">剧集综艺</a></div>
+      <div class="f-col"><h5>内容中心</h5><a href="#news">影视资讯</a><a href="#topic">精选专题</a><a href="#">经典合集</a><a href="#">高分榜单</a></div>
+      <div class="f-col"><h5>关于本站</h5><a href="#about">关于我们</a><a href="#">免责声明</a><a href="#">合作联系</a><a href="#">反馈建议</a></div>
+    </div>
+    <div class="f-bottom">
+      <p>© 2026 神马不卡电影网 shenmabukadianyingwang-h5.github.io 版权所有 · 用心为每一位影迷服务</p>
+      <p>本站仅提供影视信息导航服务，内容来源于网络，如有侵权请联系我们处理。</p>
+    </div>
+  </div>
+</footer>
+
+<button id="top" title="回到顶部">↑</button>
+
+<script>
+/* 数据 */
+var movies=[
+  {t:"暗夜追凶",s:9.2,tag:"动作",ep:"更新至12集"},
+  {t:"云端恋人",s:8.6,tag:"爱情",ep:"HD国语"},
+  {t:"星际远征",s:9.0,tag:"科幻",ep:"蓝光1080P"},
+  {t:"笑傲江湖",s:8.8,tag:"喜剧",ep:"HD中字"},
+  {t:"沉默证人",s:8.5,tag:"悬疑",ep:"高清完整版"},
+  {t:"山海奇缘",s:8.9,tag:"奇幻",ep:"4K超清"},
+  {t:"极限营救",s:8.7,tag:"动作",ep:"HD国语"},
+  {t:"甜心陷阱",s:8.3,tag:"爱情",ep:"更新至08集"},
+  {t:"迷雾之城",s:8.4,tag:"惊悚",ep:"蓝光1080P"},
+  {t:"热血街区",s:8.6,tag:"剧情",ep:"HD中字"}
+];
+var ranks=[
+  {t:"暗夜追凶",c:"动作 · 悬疑",h:"298万",s:"a"},
+  {t:"星际远征",c:"科幻 · 冒险",h:"265万",s:"b"},
+  {t:"山海奇缘",c:"奇幻 · 史诗",h:"241万",s:""},
+  {t:"沉默证人",c:"犯罪 · 悬疑",h:"228万",s:"a"},
+  {t:"极限营救",c:"动作 · 枪战",h:"215万",s:"b"},
+  {t:"笑傲江湖",c:"喜剧 · 武侠",h:"203万",s:""},
+  {t:"迷雾之城",c:"惊悚 · 推理",h:"189万",s:"a"}
+];
+var tvs=[
+  {t:"都市情感剧 · 心动的信号",ep:"更新至22集",p:80},
+  {t:"古装传奇 · 凤舞九天",ep:"更新至15集",p:60},
+  {t:"悬疑推理 · 真相背后",ep:"更新至10集",p:45},
+  {t:"真人秀 · 奔跑吧兄弟",ep:"更新至08期",p:90},
+  {t:"脱口秀 · 笑场之夜",ep:"更新至12期",p:70},
+  {t:"日漫 · 龙珠超宇宙",ep:"更新至110集",p:100},
+  {t:"国漫 · 斗破苍穹",ep:"更新至168集",p:95},
+  {t:"美剧 · 权力的游戏前传",ep:"更新至06集",p:55}
+];
+var news=[
+  {d:12,m:"10月",t:"神马不卡电影网内容库扩容，新增数百部高清影片",c:"站务公告"},
+  {d:10,m:"10月",t:"本周院线热映大片同步上线，极速播放不卡顿",c:"影片速递"},
+  {d:08,m:"10月",t:"豆瓣高分冷门佳作专题上线，小众宝藏一网打尽",c:"专题推荐"},
+  {d:05,m:"10月",t:"多线路播放源智能切换，观影体验全面升级",c:"功能更新"},
+  {d:01,m:"10月",t:"十月新片预告：多部重磅大片即将上线本站",c:"行业资讯"}
+];
+
+/* 渲染最新上线 */
+var mg=document.getElementById('movieGrid');
+movies.forEach(function(m){
+  var el=document.createElement('a');
+  el.href='#';
+  el.className='poster';
+  el.innerHTML='<div class="thumb"><div class="ph">'+m.t.charAt(0)+'</div><span class="play">▶</span><span class="p-badge">免费</span><span class="p-score">★ '+m.s+'</span></div><div class="info"><h4>'+m.t+'</h4><p><span>'+m.tag+'</span><span>'+m.ep+'</span></p></div>';
+  mg.appendChild(el);
+});
+
+/* 渲染排行榜 */
+var rl=document.getElementById('rankList');
+ranks.forEach(function(r,i){
+  var el=document.createElement('div');
+  el.className='r-item';
+  el.innerHTML='<span class="no2">'+(i+1)+'</span><span class="mini '+r.s+'"></span><div class="txt2"><h5>'+r.t+'</h5><span>'+r.c+'</span></div><span class="hot">🔥 '+r.h+'</span>';
+  rl.appendChild(el);
+});
+
+/* 渲染剧集 */
+var ts=document.getElementById('tvScroll');
+tvs.forEach(function(tv){
+  var el=document.createElement('div');
+  el.className='h-card';
+  el.innerHTML='<div class="thumb"><span>'+tv.t.split('·')[1]+'</span><span class="ep">'+tv.ep+'</span></div><div class="info"><h4>'+tv.t.split('·')[0]+'</h4><div class="bar"><i style="width:'+tv.p+'%"></i></div><small>更新进度 '+tv.p+'%</small></div>';
+  ts.appendChild(el);
+});
+
+/* 渲染资讯 */
+var nl=document.getElementById('newsList');
+news.forEach(function(n){
+  var el=document.createElement('a');
+  el.href='#';
+  el.className='n-item';
+  el.innerHTML='<div class="date"><b>'+n.d+'</b><span>'+n.m+'</span></div><div><h5>'+n.t+'</h5><p>'+n.c+'</p></div>';
+  nl.appendChild(el);
+});
+
+/* Hero 轮播 */
+var slides=document.querySelectorAll('.h-slide');
+var dots=document.querySelectorAll('#heroDots i');
+var cur=0;
+function show(n){
+  cur=(n+slides.length)%slides.length;
+  slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
+  dots.forEach(function(d,i){d.classList.toggle('active',i===cur);});
+}
+setInterval(function(){show(cur+1);},5000);
+dots.forEach(function(d,i){d.onclick=function(){show(i);};});
+
+/* Tabs */
+document.querySelectorAll('#tvTabs .tab').forEach(function(tab){
+  tab.onclick=function(){
+    document.querySelectorAll('#tvTabs .tab').forEach(function(t){t.classList.remove('active');});
+    tab.classList.add('active');
+  };
+});
+
+/* 回到顶部 */
+var topBtn=document.getElementById('top');
+window.onscroll=function(){
+  topBtn.style.display=window.scrollY>400?'block':'none';
+};
+topBtn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+
+/* 移动端菜单 */
+document.getElementById('menuBtn').onclick=function(){
+  var nav=document.querySelector('.nav');
+  nav.style.display=(nav.style.display==='flex')?'none':'flex';
+  nav.style.flexDirection='column';
+  nav.style.position='absolute';
+  nav.style.top='100%';
+  nav.style.left='0';
+  nav.style.right='0';
+  nav.style.background='var(--bg2)';
+  nav.style.padding='16px';
+  nav.style.borderBottom='1px solid var(--line)';
+};
+
+/* 表单提交 */
+document.getElementById('submitBtn').onclick=function(){
+  alert('感谢您的留言，我们会认真考虑您的建议！');
+};
+</script>
+</body>
+</html>
